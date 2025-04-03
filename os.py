@@ -13,27 +13,26 @@ class ProcessMonitor:
         self.root = root
         self.root.title("Real-Time Process Monitoring Dashboard")
         self.root.geometry("950x750")  
-        self.root.configure(bg="#1e1e1e")  # Dark background
+        self.root.configure(bg="#1e1e1e")  
         self.root.resizable(False, False)
 
-        # Theme colors
+   
         self.dark_mode = True
         self.bg_color = "#1e1e1e"
         self.fg_color = "#ffffff"
         self.accent_color = "#0078D7"
 
-        # Title Label
+    
         self.title_label = tk.Label(root, text="🔍 Process Monitor", font=("Arial", 18, "bold"), fg=self.fg_color, bg=self.bg_color)
         self.title_label.pack(pady=10)
 
-        # CPU and Memory Usage Labels
         self.cpu_label = tk.Label(root, text="CPU Usage: 0%", font=("Arial", 12), fg=self.fg_color, bg=self.bg_color)
         self.cpu_label.pack(pady=5)
 
         self.memory_label = tk.Label(root, text="Memory Usage: 0%", font=("Arial", 12), fg=self.fg_color, bg=self.bg_color)
         self.memory_label.pack(pady=5)
 
-        # Search Bar
+
         self.search_frame = tk.Frame(root, bg=self.bg_color)
         self.search_frame.pack(pady=5)
 
@@ -43,7 +42,7 @@ class ProcessMonitor:
         self.search_button = tk.Button(self.search_frame, text="🔍 Search", command=self.search_process, bg=self.accent_color, fg="white", font=("Arial", 11, "bold"), relief="ridge", padx=10)
         self.search_button.grid(row=0, column=1, padx=5)
 
-        # Process List
+  
         self.tree_frame = tk.Frame(root, bg=self.bg_color)
         self.tree_frame.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
 
@@ -58,7 +57,7 @@ class ProcessMonitor:
         self.tree.column("CPU", width=100, anchor="center")
         self.tree.column("Memory", width=100, anchor="center")
 
-        # Add striped rows
+ 
         style = ttk.Style()
         style.configure("Treeview", font=("Arial", 10), rowheight=25)
         style.configure("Treeview.Heading", font=("Arial", 12, "bold"), background=self.accent_color, foreground="white")
@@ -66,7 +65,7 @@ class ProcessMonitor:
 
         self.tree.pack(pady=5, fill=tk.BOTH, expand=True)
 
-        # Buttons Frame
+
         self.button_frame = tk.Frame(root, bg=self.bg_color)
         self.button_frame.pack(pady=5)
 
@@ -82,7 +81,6 @@ class ProcessMonitor:
         self.toggle_theme_button = tk.Button(self.button_frame, text="🌙 Toggle Theme", command=self.toggle_theme, bg="#FFA500", fg="white", font=("Arial", 11, "bold"), relief="ridge", padx=10)
         self.toggle_theme_button.grid(row=0, column=3, padx=5)
 
-        # Graph for CPU and Memory Usage
         self.cpu_data = deque([0] * 60, maxlen=60)
         self.memory_data = deque([0] * 60, maxlen=60)
 
@@ -98,7 +96,7 @@ class ProcessMonitor:
         self.canvas_widget = self.canvas.get_tk_widget()
         self.canvas_widget.pack(pady=10, fill=tk.BOTH, expand=True)
 
-        # Start threads for updating stats and processes
+    
         self.update_stats_thread = threading.Thread(target=self.update_stats, daemon=True)
         self.update_processes_thread = threading.Thread(target=self.update_processes, daemon=True)
         self.update_graph_thread = threading.Thread(target=self.update_graph, daemon=True)
@@ -190,7 +188,7 @@ class ProcessMonitor:
                 self.tree.focus(row)
                 self.tree.see(row)
                 break
-#Commiting again
+
 
 if __name__ == "__main__":
     root = tk.Tk()
