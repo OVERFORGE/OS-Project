@@ -190,7 +190,7 @@ class ProcessMonitor:
                 self.tree.focus(row)
                 self.tree.see(row)
                 break
-#Removing Commit again
+#Commiting again
 
 if __name__ == "__main__":
     root = tk.Tk()
